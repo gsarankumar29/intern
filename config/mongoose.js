@@ -1,5 +1,7 @@
 
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false);
+
 
 const dbURI = 'mongodb+srv://sarankumar:5HQi4yaGPcqCiDDg@cluster.970rxyv.mongodb.net/?retryWrites=true&w=majority';
 
