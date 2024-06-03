@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            background: #1f2937;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #e5e7eb;
+        }
+
+        .container {
+            background: #374151;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #111827;
+            padding: 20px;
+            text-align: center;
+            color: #e5e7eb;
+        }
+
+        .header h2 {
+            margin: 0;
+        }
+
+        .form-container {
+            padding: 30px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .form-container span {
+            display: block;
+            font-size: 12px;
+            color: #9ca3af;
+            margin-bottom: 5px;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #4b5563;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #1f2937;
+            color: #e5e7eb;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #3b82f6;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background: #2563eb;
+        }
+
+        .form-container .forgot-pass {
+            text-align: center;
+            font-size: 12px;
+            color: #3b82f6;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .form-container .forgot-pass:hover {
+            color: #2563eb;
+        }
+
+        .form-container .explore-text {
+            font-size: 14px;
+            color: #9ca3af;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111827;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .toggle-container button {
+            background: transparent;
+            border: none;
+            color: #3b82f6;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-container button:hover {
+            color: #2563eb;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2 id="header-text">Sign In</h2>
+    </div>
+    <div class="form-container" id="sign-in-form">
+        <form action="/users/createsession" method="post">
+            <label>
+                <span>Email</span>
+                <input type="email" name="email" placeholder="Enter Email" required>
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" name="password" placeholder="Enter Password" required>
+            </label>
+            <p class="forgot-pass">Forgot password?</p>
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+    <div class="form-container hidden" id="sign-up-form">
+        <form action="/users/create" method="post">
+            <label>
+                <span>Name</span>
+                <input type="text" name="username" placeholder="Enter Name" required>
+            </label>
+            <label>
+                <span>Email</span>
+                <input type="email" name="email" placeholder="Enter Email" required>
+            </label>
+            <label>
+                <span>Password</span>
+                <input type="password" name="password" placeholder="Enter Password" required>
+            </label>
+            <label>
+                <span>Confirm Password</span>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+            </label>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+    <div class="toggle-container">
+        <button id="toggle-btn">Don't have an account? Sign Up</button>
+    </div>
+</div>
+
+<script>
+    const toggleBtn = document.getElementById('toggle-btn');
+    const signInForm = document.getElementById('sign-in-form');
+    const signUpForm = document.getElementById('sign-up-form');
+    const headerText = document.getElementById('header-text');
+
+    toggleBtn.addEventListener('click', () => {
+        signInForm.classList.toggle('hidden');
+        signUpForm.classList.toggle('hidden');
+        if (signInForm.classList.contains('hidden')) {
+            headerText.textContent = 'Sign Up';
+            toggleBtn.textContent = 'Already have an account? Sign In';
+        } else {
+            headerText.textContent = 'Sign In';
+            toggleBtn.textContent = "Don't have an account? Sign Up";
+        }
+    });
+</script>
+
+</body>
+</html>
